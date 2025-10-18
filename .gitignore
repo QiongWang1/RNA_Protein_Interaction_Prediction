@@ -58,8 +58,6 @@ evaluation_*/
 outputs_*/
 *.err
 *.out
-job/*/*.err
-job/*/*.out
 
 # Data files (optional - remove if you want to include data)
 data/real_datasets/
