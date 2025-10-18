@@ -1,211 +1,133 @@
-# RNA-Protein Interaction Prediction - Project Summary
+# RNA Protein Interaction Prediction - Project Summary
 
 **Project:** Deep Learning for RNA-Protein Interaction Prediction  
-**Date:** October 17, 2025  
-**Status:** ✅ COMPLETE
+**Author:** Qiong Wang  
+
 
 ---
 
-## 🎯 Project Objective
+## Objective
 
-Develop and validate deep learning models for predicting RNA-protein interactions using real biological data from the RPI1807 benchmark dataset.
-
----
-
-## 🏆 Final Results
-
-### **Best Model: LSTM Architecture**
-
-**Test Set Performance (486 Unseen Samples):**
-```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Accuracy:    95.88%    96 out of 100 predictions correct
-Precision:   96.99%    97% of predicted interactions correct
-Recall:      95.56%    Catches 95.6% of real interactions
-F1-Score:    96.27%    Excellent balance
-AUC-ROC:     98.69%    Nearly perfect discrimination
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-Training Details:
-• Dataset: RPI1807 (3,237 RNA-protein pairs)
-• GPU: Tesla V100-SXM2-16GB
-• Training Time: 8 minutes 57 seconds
-• Parameters: 1,863,553
-```
-
-### **Transformer Model Performance**
-```
-Test Set Accuracy: 90.12%
-AUC-ROC:          94.59%
-F1-Score:          91.55%
-Training Time:     20 minutes
-Parameters:        695,553
-```
-
-**Winner: LSTM Model (+5.76% accuracy)**
+The goal of this project was to develop and evaluate deep learning models for predicting RNA-protein interactions using the RPI1807 benchmark dataset. I implemented and compared two architectures, an LSTM and a Transformer, to determine which model performs better for this type of biological sequence data.
 
 ---
 
-## 📊 Model Comparison: LSTM vs Transformer
+## Final Results
 
-| Metric | LSTM | Transformer | Winner |
-|--------|------|-------------|--------|
-| **Test Accuracy** | **95.88%** | 90.12% | 🏆 LSTM |
-| **Precision** | **96.99%** | 87.25% | 🏆 LSTM |
-| **Recall** | 95.56% | **96.30%** | 🏆 Transformer |
-| **F1-Score** | **96.27%** | 91.55% | 🏆 LSTM |
-| **AUC-ROC** | **98.69%** | 94.59% | 🏆 LSTM |
-| **Parameters** | 1.86M | **0.70M** | 🏆 Transformer |
-| **Training Time** | **8 min** | 20 min | 🏆 LSTM |
+### **Best Model: Bidirectional LSTM**
 
-**Overall Winner: 🏆 LSTM Model** - Better accuracy and efficiency for this dataset size.
+The LSTM model achieved 95.88% accuracy and 98.69% AUC-ROC on the test set (486 unseen samples), outperforming existing benchmark methods.
 
----
+| Metric | LSTM | Transformer |
+|--------|------|-------------|
+| Accuracy | 95.88% | 90.12% |
+| Precision | 96.99% | 87.25% |
+| Recall | 95.56% | 96.30% |
+| F1-Score | 96.27% | 91.55% |
+| AUC-ROC | 98.69% | 94.59% |
+| Parameters | 1.86M | 0.70M |
+| Training Time | 8 min | 20 min |
 
-## 🏆 Benchmark Comparison
-
-| Method | Year | Accuracy | Our LSTM | Improvement |
-|--------|------|----------|----------|-------------|
-| RPI-Pred | 2015 | ~82% | **95.88%** | **+13.88%** ✅ |
-| IPMiner | 2016 | ~85% | **95.88%** | **+10.88%** ✅ |
-| RPITER | 2020 | ~88% | **95.88%** | **+7.88%** ✅ |
-
-**🏆 State-of-the-art performance achieved!**
+**Overall Winner:** LSTM (higher accuracy and faster convergence on this dataset)
 
 ---
 
-## 🔧 Technical Implementation
+## Model Evaluation Visualizations
 
-### **Models Developed:**
+### **LSTM Model Performance**
 
-**1. LSTM-based Model (SimplifiedRNAProteinModel)**
-- Bidirectional LSTM for sequential processing
-- 1,863,553 parameters
-- **Best performance: 95.88% accuracy**
+<p align="center">
+  <img src="evaluation_RPI1807/roc_curve.png" width="45%" />
+  <img src="evaluation_RPI1807/confusion_matrix.png" width="45%" />
+</p>
 
-**2. Transformer-based Model (SimplifiedTransformerModel)**
-- Self-attention mechanism
-- 695,553 parameters (62% smaller)
-- Good performance: 90.12% accuracy
+The LSTM model demonstrates excellent classification performance with an AUC-ROC of 98.69% and high accuracy across both interacting and non-interacting RNA-protein pairs, with minimal misclassification errors.
 
-### **System Components:**
+---
+
+## Training Setup
+
+- **Dataset:** RPI1807 (3,237 RNA-protein pairs)
+- **GPU:** Tesla V100-SXM2 (16 GB)
+- **Training Time:** about 9 minutes
+- **Data Split:** 70% train / 15% validation / 15% test
+- **Model Parameters:** 1.86M (LSTM), 0.70M (Transformer)
+
+---
+
+## Implementation Overview
+
+The project includes:
+
 - Data preprocessing and sequence encoding
-- Training pipeline with GPU acceleration
-- Model evaluation and metrics
-- Inference system for predictions
-- SLURM job automation for cluster computing
-- Comprehensive documentation
+- Model training, evaluation, and inference pipelines
+- SLURM automation for cluster computing
+- Documentation and detailed performance reports
 
-### **Dataset:**
-- **Source**: RPI1807 from RPITER repository
-- **Size**: 3,237 RNA-protein interaction pairs
-- **Quality**: Real biological data from published research
-- **Split**: 70% train / 15% validation / 15% test
+Both models were trained and evaluated under the same conditions for fair comparison.
 
 ---
 
-## ✨ Key Achievements
+## Benchmark Comparison
 
-### ✅ **Performance Excellence:**
-- **95.88% accuracy** on test set (state-of-the-art)
-- **98.69% AUC-ROC** (nearly perfect discrimination)
-- **Outperformed benchmarks** by 7-14%
-- **Balanced performance** across both classes
+| Method | Year | Reported Accuracy | Our LSTM | Improvement |
+|--------|------|-------------------|----------|-------------|
+| RPI-Pred | 2015 | ~82% | 95.88% | +13.9% |
+| IPMiner | 2016 | ~85% | 95.88% | +10.9% |
+| RPITER | 2020 | ~88% | 95.88% | +7.9% |
 
-### ✅ **Technical Excellence:**
-- **GPU optimization**: 8-minute training (80x speedup vs CPU)
-- **Two architectures** implemented and compared
-- **Production-ready** code and documentation
-- **Scientifically rigorous** evaluation methodology
-
-### ✅ **Software Quality:**
-- **Professional code structure**: Modular and documented
-- **Complete pipeline**: Training, evaluation, inference
-- **Scalable design**: Easy to extend
-- **Well-tested**: Multiple architectures validated
+**State-of-the-art performance achieved.**
 
 ---
 
-## 📁 Key Files
+## Key Findings
 
-### **Results:**
-- `outputs_RPI1807/results.txt` - LSTM results (95.88%)
-- `outputs_RPI1807_transformer/results.txt` - Transformer results (90.12%)
+### **Why the LSTM performed better:**
+- RNA and protein sequences are inherently sequential, which fits LSTM's structure.
+- Bidirectional layers capture contextual dependencies more effectively.
+- LSTM works especially well for medium-sized datasets such as RPI1807.
+- Showed faster and more stable convergence during training.
 
-### **Models:**
-- `models/rna_protein_model.py` - LSTM architectures
-- `models/transformer_model.py` - Transformer architectures
+### **Why the Transformer remains promising:**
+- **62% fewer parameters** (0.70M vs 1.86M) and more memory-efficient.
+- Self-attention captures long-range dependencies effectively.
+- Scales well to larger datasets and multimodal extensions.
+- With hyperparameter tuning and more data, Transformer performance could improve significantly.
 
-### **Scripts:**
-- `script/train.py` - Training script
-- `script/evaluate.py` - Evaluation script
-- `script/inference.py` - Inference script
+### **Training Comparison: LSTM vs Transformer**
 
-### **Documentation:**
-- `README.md` - Project overview
-- `docs/MODEL_COMPARISON.md` - Detailed LSTM vs Transformer analysis
-- `docs/EVALUATION_EXPLAINED.md` - Methodology explanation
+<p align="center">
+  <img src="outputs_RPI1807/training_history.png" width="45%" alt="LSTM Training History" />
+  <img src="outputs_RPI1807_transformer/training_history.png" width="45%" alt="Transformer Training History" />
+</p>
 
----
-
-## 🎯 Recommendations
-
-### **For Production Use:**
-**Use LSTM model** for optimal performance:
-- **Location**: `outputs_RPI1807/checkpoints/best_model.pth`
-- **Accuracy**: 95.88%
-- **Most reliable** and efficient for this dataset size
-
-### **For Research:**
-- **LSTM**: Best overall performance
-- **Transformer**: Smaller model, good for resource-constrained environments
 
 ---
 
-## 🧬 Practical Applications
+## Applications
 
-The model can predict RNA-protein interactions for:
-- **Drug discovery**: Identify RNA-binding proteins
-- **Functional genomics**: Predict regulatory interactions
-- **Biomarker discovery**: Find disease-related pairs
-- **Hypothesis generation**: Suggest experimental targets
+This model can be applied in:
 
----
-
-## 📈 Performance Insights
-
-### **Why LSTM Performed Better:**
-- **Sequential nature**: RNA and protein sequences are inherently sequential
-- **Dataset size**: LSTM works well with moderate-sized datasets
-- **Architecture fit**: Bidirectional processing captures sequence context
-
-### **Transformer Advantages:**
-- **Parameter efficiency**: 62% fewer parameters
-- **Modern architecture**: Self-attention mechanism
-- **Scalability**: Better for larger datasets
+- **Drug discovery:** identifying RNA-binding proteins
+- **Functional genomics:** predicting regulatory interactions
+- **Biomarker discovery:** detecting disease-related RNA-protein pairs
+- **Hypothesis generation:** suggesting potential targets for experiments
 
 ---
 
-## ✅ Conclusion
+## Repository Highlights
 
-**Objective**: Develop deep learning models for RNA-protein interaction prediction
+- `models/rna_protein_model.py`: LSTM implementation
+- `models/transformer_model.py`: Transformer implementation
+- `scripts/train.py`: training pipeline
+- `scripts/evaluate.py`: evaluation and metrics
+- `outputs_RPI1807/results.txt`: LSTM results (95.88%)
 
-**Result**: ✅ **SUCCESS - State-of-the-Art Performance Achieved**
 
-**Evidence:**
-- **95.88% test accuracy** on RPI1807 benchmark
-- **Outperformed all published methods** by 7-14%
-- **Complete system developed** with two architectures
-- **Production-ready implementation**
-- **Scientifically rigorous evaluation**
-
-**Final Answer**: ✅ **YES, Deep learning models can successfully predict RNA-protein interactions with state-of-the-art performance!**
+**Full repository:** [https://github.com/QiongWang1/RNA_Protein_Interaction_Prediction](https://github.com/QiongWang1/RNA_Protein_Interaction_Prediction)
 
 ---
 
-**Project Location**: `/projects/weilab/qiongwang/RNA_Protein_Interaction/`  
-**Status**: ✅ **COMPLETE**  
-**Best Model**: LSTM with 95.88% test accuracy  
-**Date Completed**: October 17, 2025
+## Conclusion
 
-**🏆 State-of-the-Art Performance Achieved! 🏆**
+This project demonstrates that deep learning models can accurately predict RNA-protein interactions from biological sequence data. The LSTM model achieved 95.88% test accuracy and 98.69% AUC-ROC, surpassing previous benchmarks by 7–14%. The implementation is modular, reproducible, and designed for further research and extension in computational biology.
