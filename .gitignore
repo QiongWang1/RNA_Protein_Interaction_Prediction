@@ -54,6 +54,7 @@ Thumbs.db
 
 # Project specific
 docs/
+job/
 evaluation_*/
 outputs_*/
 *.err
