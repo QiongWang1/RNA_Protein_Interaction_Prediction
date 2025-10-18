@@ -1,7 +1,6 @@
 # RNA Protein Interaction Prediction - Project Summary
 
 **Project:** Deep Learning for RNA-Protein Interaction Prediction  
-**Author:** Qiong Wang  
 
 
 ---
@@ -104,24 +103,13 @@ Both models were trained and evaluated under the same conditions for fair compar
 
 ---
 
-## Applications
-
-This model can be applied in:
-
-- **Drug discovery:** identifying RNA-binding proteins
-- **Functional genomics:** predicting regulatory interactions
-- **Biomarker discovery:** detecting disease-related RNA-protein pairs
-- **Hypothesis generation:** suggesting potential targets for experiments
-
----
-
 ## Repository Highlights
 
-- `models/rna_protein_model.py`: LSTM implementation
+- `models/lstm_model.py`: LSTM implementation
 - `models/transformer_model.py`: Transformer implementation
 - `scripts/train.py`: training pipeline
 - `scripts/evaluate.py`: evaluation and metrics
-- `outputs_RPI1807/results.txt`: LSTM results (95.88%)
+
 
 
 **Full repository:** [https://github.com/QiongWang1/RNA_Protein_Interaction_Prediction](https://github.com/QiongWang1/RNA_Protein_Interaction_Prediction)

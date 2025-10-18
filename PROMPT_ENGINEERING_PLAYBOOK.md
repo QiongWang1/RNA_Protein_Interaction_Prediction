@@ -1,7 +1,7 @@
 # Prompt Engineering Playbook: Deep Learning for RNA–Protein Interaction Prediction
 
 **Project:** Deep Learning for RNA–Protein Interaction Prediction  
-**Collaboration:** Qiong Wang × Claude Code  
+**Collaboration:** Qiong × Claude Code  
 **Result:** 95.88% Test Accuracy (beat the bechmark in RPI-Pred, IPMiner, RPITER)  
 **Goal:** Prompt design for AI-assisted scientific software engineering
 
