@@ -37,8 +37,8 @@ The LSTM model achieved 95.88% accuracy and 98.69% AUC-ROC on the test set (486 
 ### **LSTM Model Performance**
 
 <p align="center">
-  <img src="evaluation_RPI1807/roc_curve.png" width="45%" />
-  <img src="evaluation_RPI1807/confusion_matrix.png" width="45%" />
+  <img src="figures/lstm/roc_curve.png" width="45%" />
+  <img src="figures/lstm/confusion_matrix.png" width="45%" />
 </p>
 
 The LSTM model demonstrates excellent classification performance with an AUC-ROC of 98.69% and high accuracy across both interacting and non-interacting RNA-protein pairs, with minimal misclassification errors.
@@ -97,8 +97,8 @@ Both models were trained and evaluated under the same conditions for fair compar
 ### **Training Comparison: LSTM vs Transformer**
 
 <p align="center">
-  <img src="outputs_RPI1807/training_history.png" width="45%" alt="LSTM Training History" />
-  <img src="outputs_RPI1807_transformer/training_history.png" width="45%" alt="Transformer Training History" />
+  <img src="figures/lstm/training_history.png" width="45%" alt="LSTM Training History" />
+  <img src="figures/transformer/training_history.png" width="45%" alt="Transformer Training History" />
 </p>
 
 
